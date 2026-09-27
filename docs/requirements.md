@@ -36,15 +36,17 @@ The official `skill-creator/scripts/quick_validate.py` utility additionally need
 
 ## Functional requirements
 
-1. Analyze the photo before generation and identify the main subject, secondary anchor, removable clutter, and a 6–10 color palette.
-2. Create a finished oil-pastel artwork that looks realistically paintable by a beginner-to-intermediate artist.
-3. Use the accepted finished artwork as the reference for the early and late drawing stages.
-4. Generate stages separately at full resolution; do not use a contact sheet as the animation source.
-5. Assemble a 5–10 second step loop using direct stage changes.
-6. Preserve major anchors across stages and reject obvious geometry or identity drift.
-7. For faces and character-like subjects, create a feature-lock card before generation and apply it verbatim to the final, early, and late-stage prompts.
-8. Reject a stage when any visible locked eye, nose, mouth, ear, patch, or fixed accessory changes topology or relative placement. After one focused retry, stop animation assembly if the stage still fails.
-9. Report image-generation call counts and exact token usage when exposed; otherwise report `unavailable` with the reason.
+1. When no photo is available, give one concise upload instruction plus the still/GIF choice; when a photo is available, avoid questionnaires and provide a compact creation brief before generation.
+2. Analyze the photo before generation and identify the main subject, secondary anchor, removable clutter, and a 6–10 color palette.
+3. Select one photo-appropriate style family using `references/style-selection.md`, record a concrete style card internally, and explain the choice to the user in ordinary visual language.
+4. Create a finished oil-pastel artwork that looks realistically paintable by a beginner-to-intermediate artist and conforms to the style card.
+5. Use the accepted finished artwork as the reference for the early and late drawing stages.
+6. Generate stages separately at full resolution; do not use a contact sheet as the animation source.
+7. Assemble a 5–10 second step loop using direct stage changes.
+8. Preserve major anchors and the selected style language across stages; reject obvious geometry, identity, or style drift.
+9. For faces and character-like subjects, create a feature-lock card before generation and apply it verbatim to the final, early, and late-stage prompts.
+10. Reject a stage when any visible locked eye, nose, mouth, ear, patch, or fixed accessory changes topology or relative placement. After one focused retry, stop animation assembly if the stage still fails.
+11. Report image-generation call counts and exact token usage when exposed; otherwise report `unavailable` with the reason.
 
 ## Visual quality requirements
 
@@ -53,6 +55,7 @@ The official `skill-creator/scripts/quick_validate.py` utility additionally need
 - Preserve identity-critical features for people, pets, and keepsakes.
 - Preserve structure-critical geometry for landscapes, street scenes, buildings, horizons, and trees.
 - Avoid photorealism, glossy digital rendering, smooth airbrush gradients, perfect vector edges, excessive bloom, and invented readable text.
+- Preserve visible oil-pastel granulation, wax crumbs, and paper tooth. Shared fine grain across different surfaces is acceptable and must not be smoothed away merely for uniformity; evaluate the direction and scale of larger form-building marks separately.
 - The early and middle frames must each look like believable unfinished drawings, not degraded versions of the final image.
 - Do not use blur-to-sharp, pixel reveals, strip masks, or geometry-dissolving transitions.
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "照片转油彩笔画"
   short_description: "将实拍照片简化为可绘制的油画棒作品，并生成步骤循环 GIF"
-  default_prompt: "使用 $photo-to-oil-pastel 把这张照片转成可实际绘制的油画棒作品，并生成 6 秒步骤循环 GIF。"
+  default_prompt: "使用 $photo-to-oil-pastel 处理我上传的照片：先推荐最适合的油画棒风格并说明保留与简化内容，再生成静态成品；只有我要求过程时才追加 6 秒 GIF。"

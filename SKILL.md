@@ -40,6 +40,8 @@ Inspect the converted image before generating anything. Identify:
 - 6–10 practical oil-pastel colors;
 - text, signs, tiny objects, and photographic details that should become abstract marks.
 
+When the subject has a face or character-like features, write a **feature-lock card** before generation. Record only visible, identity-critical facts: eye count and shape, open/closed direction, pupil or highlight arrangement, nose geometry and fill, mouth presence and geometry, ear placement, face patches, and fixed accessories. Separate these hard invariants from texture that may be omitted. For example, “two narrow downward-curved eyes with two highlights; solid triangular nose; separate small mouth” is a lock, not optional styling.
+
 For portraits, people, pets, or keepsakes, preserve identity-critical silhouette, pose, expression, and color blocks. For landscapes or street scenes, preserve the dominant perspective, main trunks/buildings/horizon, and light placement.
 
 ### 2. Plan for paintability
@@ -52,6 +54,8 @@ Do not directly imitate every photograph detail. Translate the source into a dra
 - replace readable background text with non-readable marks or simple color rectangles;
 - keep visible paper gaps, broken edges, uneven pressure, and limited layering;
 - make the result plausible for a beginner-to-intermediate artist using real oil pastels.
+
+Simplification may remove texture and secondary marks, but it must not redesign a locked facial feature. In an unfinished stage, either preserve the locked feature's geometry or omit a detail that has not been drawn yet; never replace it with a different symbol.
 
 Reject directions that produce glossy digital illustration, smooth airbrush gradients, hyper-detailed fur or flowers, perfect vector edges, cinematic glow, or a generic AI-painting finish.
 
@@ -67,7 +71,7 @@ Treat the photo as the edit target. Do not depend on a particular model vendor, 
 
 Read [references/prompt-templates.md](references/prompt-templates.md) and adapt the finished-art prompt to the actual subject. Preserve the source composition while simplifying it; do not introduce unrelated objects or narrative changes.
 
-Inspect the result. Retry once only when there is a material failure such as changed identity, broken anatomy, lost focal subject, unreadable composition, excessive photographic detail, or obvious digital polish. Make the retry narrowly corrective.
+Inspect the result against both the source and the feature-lock card. Retry once only when there is a material failure such as changed identity, changed locked facial geometry, broken anatomy, lost focal subject, unreadable composition, excessive photographic detail, or obvious digital polish. Make the retry narrowly corrective.
 
 Copy the accepted image into the output directory as `02-final-oil-pastel.png`.
 
@@ -80,7 +84,9 @@ Use the accepted final artwork—not the original photograph—as the reference 
 
 Use the corresponding templates in [references/prompt-templates.md](references/prompt-templates.md). Lock the crop, perspective, main silhouettes, branch/horizon/building placement, subject scale, and hand or face geometry in every stage.
 
-Retry a stage once only if a major anchor visibly jumps. Do not chase minor handmade variation.
+Paste the same feature-lock card verbatim into both stage prompts. If the face is small in the full frame, use a protected-region mask, crop/reference control, or a focused local correction when the backend supports it. Lack of tiny texture is acceptable; different eye, nose, or mouth topology is not.
+
+Retry a stage once if a major anchor jumps or any locked feature changes. If the corrected stage still violates the feature lock, reject it and do not assemble the GIF. Report the rejected stage instead of treating identity drift as handmade variation.
 
 ### 5. Assemble the loop
 
@@ -103,6 +109,8 @@ The loop uses direct stage changes, not blur-to-sharp, pixel reveals, horizontal
 
 - Compare the source and final artwork: the memory, main subject, and composition must remain recognizable.
 - Compare all three generated stages side by side: major anchors should not move or change scale.
+- Inspect every identity-critical face or character region at useful zoom. Compare eye geometry and highlight pattern, nose geometry, mouth presence/shape, ears, patches, and fixed accessories against the feature-lock card.
+- An unfinished stage may contain fewer marks, but every visible locked mark must have the same topology and relative placement as the accepted final. Reject substitutions such as round eyes for curved eyes, a Y-shaped nose for a triangle, or a missing mouth after the mouth has already been established.
 - Confirm the early and middle frames are believable standalone unfinished drawings.
 - Confirm GIF duration is 5–10 seconds and the final artwork is held long enough to read.
 - Inspect the first, middle, and final frames. Reject morphing anatomy, extra limbs, moving buildings, shifting trunks, readable invented text, or digital reveal artifacts.

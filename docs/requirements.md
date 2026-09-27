@@ -42,7 +42,9 @@ The official `skill-creator/scripts/quick_validate.py` utility additionally need
 4. Generate stages separately at full resolution; do not use a contact sheet as the animation source.
 5. Assemble a 5–10 second step loop using direct stage changes.
 6. Preserve major anchors across stages and reject obvious geometry or identity drift.
-7. Report image-generation call counts and exact token usage when exposed; otherwise report `unavailable` with the reason.
+7. For faces and character-like subjects, create a feature-lock card before generation and apply it verbatim to the final, early, and late-stage prompts.
+8. Reject a stage when any visible locked eye, nose, mouth, ear, patch, or fixed accessory changes topology or relative placement. After one focused retry, stop animation assembly if the stage still fails.
+9. Report image-generation call counts and exact token usage when exposed; otherwise report `unavailable` with the reason.
 
 ## Visual quality requirements
 

@@ -21,6 +21,7 @@ Optional inputs:
 - target width and height;
 - output format, preferably PNG;
 - seed or consistency controls;
+- protected-region mask, identity-reference crop, or regional reference-strength controls;
 - negative prompt or provider-specific safety options.
 
 Required result:
@@ -83,5 +84,6 @@ Do not derive the unfinished stages from the source photograph, and do not reque
 - Resolve authentication outside the skill directory.
 - Normalize provider output into a readable raster artifact.
 - Preserve the requested crop and composition when the provider supports controls for them.
+- Pass the feature-lock card unchanged to every relevant stage request; use regional protection controls for small identity-critical faces when available.
 - Record failed and cancelled attempts for the final usage report.
 - Never silently substitute text-to-image generation when reference-image editing is required.
